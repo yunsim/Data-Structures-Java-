@@ -1,3 +1,5 @@
+import com.sun.corba.se.impl.naming.cosnaming.InternalBindingKey;
+
 import java.util.Formatter;
 
 /**
@@ -81,7 +83,12 @@ public class IntList {
 
     public static IntList dcatenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        IntList cur = A;
+        while (cur.rest != null) {
+            cur = cur.rest;
+        }
+        cur.rest = B;
+        return A;
     }
 
     /**
@@ -90,7 +97,20 @@ public class IntList {
      */
     public static IntList catenate(IntList A, IntList B) {
         //TODO:  fill in method
-        return null;
+        IntList res = new IntList(A.first, null);
+        IntList cur = res;
+        A = A.rest;
+        while (A != null) {
+            cur.rest = new IntList(A.first, null);
+            A = A.rest;
+            cur = cur.rest;
+        }
+        while (B != null) {
+            cur.rest = new IntList(B.first, null);
+            B = B.rest;
+            cur = cur.rest;
+        }
+        return res;
     }
 
 
